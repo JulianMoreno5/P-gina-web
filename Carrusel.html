@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrusel de Imágenes Automático</title>
+  <style>
+
+    .carousel-container {
+      position: relative;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    
+    .carousel-slide {
+      display: none;
+      width: 100%;
+    }
+
+    
+    .carousel-text {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    
+    .carousel-fade {
+      transition: opacity 1s ease;
+    }
+  </style>
+</head>
+<body bgcolor="white">
+
+<div class="carousel-container">
+  <img src="imagen1.jpg" alt="Imagen 1" class="carousel-slide carousel-fade">
+  <img src="imagen2.jpg" alt="Imagen 2" class="carousel-slide carousel-fade">
+  <img src="imagen3.jpg" alt="Imagen 3" class="carousel-slide carousel-fade">
+</div>
+
+<script>
+  let slideIndex = 0;
+  const slides = document.getElementsByClassName("carousel-slide");
+
+  function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  // Ocultar todas las imágenes
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    slides[slideIndex - 1].style.display = "block";  //
+    setTimeout(showSlides, 3000);  //
+  }
+
+  showSlides();
+</script>
+
+</body>
+</html>
