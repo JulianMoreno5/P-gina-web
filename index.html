@@ -5,9 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi pagina web acerca de VIH</title>
  <style>
-     body {
+   
+    body {
     font-family: Arial, sans-serif;
-}
+    }
+    
+    .carousel-container {
+      position: relative;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    
+    .carousel-slide {
+      display: none;
+      width: 100%;
+    }
+
+    
+    .carousel-text {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    
+    .carousel-fade {
+      transition: opacity 1s ease;
+    }
+
    img {
      weigh:400px;
      height:auto;
@@ -28,5 +60,27 @@
     <header>
     <h1>VIH (Sida)</h1>
     </header>
-    <img src="IMG_1351.gif"><br>
-    <a href="Carrusel.html">Carrusel de imagenes</a><br>
+   
+<div class="carousel-container">
+  <img src="IMG_1348.jpeg" alt="Imagen 1" class="carousel-slide carousel-fade">
+  <img src="IMG_1349.jpeg" alt="Imagen 2" class="carousel-slide carousel-fade">
+  <img src="IMG_1350.jpeg" alt="Imagen 3" class="carousel-slide carousel-fade">
+</div>
+<p>Aqui se puede ver en las imagenes como se ve el virus.</p>
+<script>
+  let slideIndex = 0;
+  const slides = document.getElementsByClassName("carousel-slide");
+
+  function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  // Ocultar todas las imágenes
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    slides[slideIndex - 1].style.display = "block";  //
+    setTimeout(showSlides, 3000);  //
+  }
+
+  showSlides();
+</script>
+</body>
