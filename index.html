@@ -75,6 +75,37 @@
  </style>
 </head>
 <body bgcolor="white">
+     <button id="startButton">Iniciar Efecto Virus</button>
+   <script>
+      const startButton = document.getElementById('startButton');
+    
+    startButton.addEventListener('click', () => {
+      startButton.style.display = 'none';
+      startVirusEffect();
+    });
+
+    function startVirusEffect() {
+      setInterval(createVirusWindow, 300);
+    }
+
+    function createVirusWindow() {
+      const windowWidth = Math.floor(Math.random() * 200) + 100;
+      const windowHeight = Math.floor(Math.random() * 150) + 100;
+      const posX = Math.floor(Math.random() * window.innerWidth);
+      const posY = Math.floor(Math.random() * window.innerHeight);
+      
+      const newWindow = window.open('', '', `width=${windowWidth},height=${windowHeight},left=${posX},top=${posY}`);
+      
+      if (newWindow) {
+        newWindow.document.write('<h1 style="color:red;">¡Virus!</h1>');
+        newWindow.document.body.style.backgroundColor = '#000';
+        newWindow.document.body.style.display = 'flex';
+        newWindow.document.body.style.justifyContent = 'center';
+        newWindow.document.body.style.alignItems = 'center';
+        newWindow.document.body.style.height = '100vh';
+      }
+    }
+</script>
     <header>
     <h1>VIH</h1>
     </header>
