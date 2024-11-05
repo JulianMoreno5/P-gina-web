@@ -158,4 +158,71 @@ Si el VIH no se trata, la infección puede avanzar a SIDA (Síndrome de Inmunode
     <a href="#" style="color: #fff; text-decoration: none;">Términos de Servicio</a>
   </p>
 </footer>
+    <canvas id="particleCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("particleCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Configuración del canvas para que cubra toda la pantalla
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Arreglo para almacenar las partículas
+        const particles = [];
+
+        // Crear partículas
+        function createParticles() {
+            for (let i = 0; i < 100; i++) {  // Ajusta el número de partículas
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 4 + 1,
+                    speedX: (Math.random() - 0.5) * 2,
+                    speedY: (Math.random() - 0.5) * 2,
+                    color: `rgba(255, 255, 255, ${Math.random()})`  // Partículas semitransparentes
+                });
+            }
+        }
+
+        // Dibujar partículas en el canvas
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+            });
+        }
+
+        // Animar partículas
+        function animateParticles() {
+            particles.forEach(particle => {
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+
+                // Rebotar en los bordes
+                if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+            });
+        }
+
+        // Función para renderizar el efecto
+        function render() {
+            drawParticles();
+            animateParticles();
+            requestAnimationFrame(render);
+        }
+
+        // Inicializar y comenzar el efecto
+        createParticles();
+        render();
+
+        // Ajustar el tamaño del canvas si cambia el tamaño de la ventana
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
